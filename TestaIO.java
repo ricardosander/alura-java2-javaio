@@ -1,8 +1,7 @@
-import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class TestaIO {
@@ -12,8 +11,7 @@ public class TestaIO {
 		try {
 			
 			OutputStream os = new FileOutputStream("saida.txt");
-			OutputStreamWriter osw = new OutputStreamWriter(os);
-			BufferedWriter bw = new BufferedWriter(osw);
+			PrintStream bw = new PrintStream(os);
 
 			Scanner scanner = new Scanner(System.in);
 			System.out.println("Olá. Bem vindo ao escritor de arquivos.");
@@ -26,8 +24,8 @@ public class TestaIO {
 				if (texto.equals("sair")) {
 					break loop;
 				}
-				bw.write(texto);
-				bw.newLine();
+				bw.print(texto);
+				bw.println("");
 			}
 			scanner.close();
 			bw.close();
