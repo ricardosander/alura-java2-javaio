@@ -8,18 +8,15 @@ public class TestaIO {
 
 	public static void main(String[] args) {
 
-		FileInputStream is;
 		try {
-			
-			is = new FileInputStream("src/arquivo.txt");
-			InputStreamReader isr = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(isr);
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("src/arquivo.txt")));
 			System.out.println("Olá. Bem vindo ao leitor de arquivo. Lendo arquivo.txt...");
 			try {
 
 				StringBuilder textoBuilder = new StringBuilder();
 				String texto;
-				while((texto = br.readLine()) != null) {
+				while ((texto = br.readLine()) != null) {
 					textoBuilder.append(texto);
 					textoBuilder.append("\n");
 				}
