@@ -1,18 +1,41 @@
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.Scanner;
 
 public class TestaIO {
 
 	public static void main(String[] args) {
 
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Olá. Bem vindo ao leitor de arquivo. Lendo arquivo.txt...");
+		try {
+			
+			OutputStream os = new FileOutputStream("saida.txt");
+			OutputStreamWriter osw = new OutputStreamWriter(os);
+			BufferedWriter bw = new BufferedWriter(osw);
 
-		System.out.println("Texto lido:");
-		while (scanner.hasNextLine()) {
-			System.out.println(scanner.nextLine());
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("Olá. Bem vindo ao escritor de arquivos.");
+
+			String texto = "";
+			loop: while (!texto.equals("sair")) {
+
+				System.out.println("Digite o texto para escrever. Digite \"sair\" para termonar.");
+				texto = scanner.nextLine();
+				if (texto.equals("sair")) {
+					break loop;
+				}
+				bw.write(texto);
+				bw.newLine();
+			}
+			scanner.close();
+			bw.close();
+			System.out.println("Sim da escrita.");
+		} catch (IOException e) {
+
+			System.out.println("Houve um erro: " + e.getMessage());
+			System.exit(0);
 		}
-		System.out.println("Tchau tchau.");
-		scanner.close();
-
 	}
 }
