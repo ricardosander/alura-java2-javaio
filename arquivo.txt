@@ -1,0 +1,4 @@
+Arquivo para teste;
+Mais de uma linha
+Aqui é a terceira.
+Acabou.
